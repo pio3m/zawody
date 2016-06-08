@@ -14,7 +14,7 @@ class UsersController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-
+        var $uses = array('User','Category');
 /**
  * index method
  *
@@ -27,7 +27,7 @@ class UsersController extends AppController {
 	}
         
         public function admin() {
-		$this->User->recursive = 0;
+		$this->Users->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
                 $this->set('all',$this->User->getAllUsers());
 	}
@@ -53,6 +53,9 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
+            
+            $this->set('options', $this->Category->find('list', array('fields' => array('Category.id','Category.name'))));
+             
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -72,6 +75,8 @@ class UsersController extends AppController {
  * @return void
  */
 	public function edit($id = null) {
+            $this->set('options', $this->Category->find('list', array('fields' => array('Category.id','Category.name'))));
+            
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
