@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('addres','adres'); ?></th>
 			<th><?php echo $this->Paginator->sort('email','email'); ?></th>
 			<th><?php echo $this->Paginator->sort('category','kategoria'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions"><?php echo 'edycja'; ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -20,11 +20,10 @@
 		<td><?php echo h($user['User']['age']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['addres']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['category']); ?>&nbsp;</td>
+		<td><?php echo h($user['Category']['name']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
+			<?php echo $this->Html->link('Edycja', array('action' => 'edit', $user['User']['id'])); ?>
+			<?php echo $this->Form->postLink('Usuń', array('action' => 'delete', $user['User']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $user['User']['id']))); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -33,12 +32,15 @@
 	
 </div>
 <div class="actions">
-	<h3>Rejestracja</h3>
+	<h3>Menu</h3>
         <?php
-            if(count($all) < 5){ 
+            if(count($users) < 5){ 
         ?>
 	<ul>
 		<li><?php echo $this->Html->link("Zapisz się", array('action' => 'add')); ?></li>
+                <li><?php echo $this->Html->link('Kategorie', array('controller' => 'categories', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link('Dodaj kategorię', array('controller' => 'categories', 'action' => 'add')); ?> </li>
+	
 	</ul>
         
         <?php
@@ -46,8 +48,9 @@
                 echo 'Zamknięta';
             }
         ?>
-        <h3>Wolne miejsca</h3>
+        <h3>Pozostało wolnych miejsc</h3>
         <?php
-        echo 5 - count($all);
+        echo 5 - count($users);
         ?>
+        
 </div>

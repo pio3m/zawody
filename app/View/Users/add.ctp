@@ -4,7 +4,7 @@
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
 	<fieldset>
-		<legend><?php echo __('Add User'); ?></legend>
+		<legend>Rejestracja</legend>
 	<?php
 		echo $this->Form->input('name', array('label' =>'Imię', 'id'=> 'name'));
 		echo $this->Form->input('surname', array('label' =>'Nazwisko', 'id'=> 'surname'));
@@ -14,14 +14,12 @@
 		echo $this->Form->input('category_id', array('id'=> 'catergory','label' => 'Kategoria', 'options' => $options));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end('Zapisz'); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3>Menu</h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
-	</ul>
+		<li><?php echo $this->Html->link('Lista uczestników', array('action' => 'index')); ?></li>
+		</ul>
 </div>

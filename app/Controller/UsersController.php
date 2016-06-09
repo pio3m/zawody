@@ -27,9 +27,9 @@ class UsersController extends AppController {
 	}
         
         public function admin() {
-		$this->Users->recursive = 0;
+		//$this->Users->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
-                $this->set('all',$this->User->getAllUsers());
+                
 	}
 
 /**
