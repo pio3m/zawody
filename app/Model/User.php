@@ -13,7 +13,7 @@ class User extends AppModel {
  * @var string
  */
 	public $displayField = 'name';
-
+        public $validationDomain = 'validation';
 /**
  * Validation rules
  *
@@ -23,19 +23,19 @@ class User extends AppModel {
 		'name' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
+				'message' => 'Nie można zostawić pustego tego pola',
+				'allowEmpty' => false,
+				'required' => true,
+				//'last' => false // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'surname' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Nie można zostawić pustego tego pola',
+				'allowEmpty' => false,
+				'required' => true
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -43,9 +43,9 @@ class User extends AppModel {
 		'age' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Pole musi być liczbą i nie może być puste',
+				'allowEmpty' => false,
+				'required' => true
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -53,9 +53,9 @@ class User extends AppModel {
 		'addres' => array(
 			'notBlank' => array(
 				'rule' => array('notBlank'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Pole nie może być puste',
+				'allowEmpty' => false,
+				'required' => true
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -63,23 +63,13 @@ class User extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
+				'message' => 'Nie poprawny adres email lub pole puste',
+				'allowEmpty' => false,
+				'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'category_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		)
 	);
 
 	// The Associations below have been created with all possible keys, those that are not needed can be removed

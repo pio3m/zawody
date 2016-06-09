@@ -13,7 +13,7 @@ class UsersController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'RequestHandler');
         var $uses = array('User','Category');
 /**
  * index method
@@ -57,6 +57,7 @@ class UsersController extends AppController {
             $this->set('options', $this->Category->find('list', array('fields' => array('Category.id','Category.name'))));
              
 		if ($this->request->is('post')) {
+                    
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Flash->success(__('The user has been saved.'));
@@ -113,4 +114,29 @@ class UsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public  function validate_form(){
+         
+         
+          
+            if($this->RequestHandler->isAjax()){
+               
+                $this->request->data['User'][$this->request->data['field']] = $this->request->data['value'];
+                $this->User->set($this->data);
+                  
+               if($this->User->validates()){
+                    $this->autoRender = FALSE;                     
+                }else {  
+                    $error = $this->validateErrors($this->User);
+                    
+                    if(isset($error[$this->request->data['field']])){
+                     $this->set('error',$error[$this->request->data['field']][0]);
+                    }else{
+                         $this->set('error',null);
+                    }
+                    
+                }
+            }               
+                            
+        }
 }
